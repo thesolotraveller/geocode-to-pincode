@@ -1,11 +1,8 @@
 {
   "name": "geocode-to-pincode",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Tiny library for obtaining pincode from geo coordinates",
   "main": "index.js",
-  "scripts": {
-    "test": "npm run test"
-  },
   "author": "Mohit Gupta",
   "license": "ISC",
   "dependencies": {
