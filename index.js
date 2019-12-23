@@ -1,7 +1,7 @@
 var url = require("url");
 var axios = require("axios");
 
-exports.getPinCode = function(options) {
+function geocodeToPincode (options) {
   var coordinates = `${options.lat},${options.lng}`;
   var query = {
     latlng: coordinates,
@@ -12,6 +12,7 @@ exports.getPinCode = function(options) {
  
   return axios.get(requestUrl)
     .then((response) => {
+      if (response.data.error_message) throw new Error(response.data.error_message);
       response = response.data.results[0].address_components;
       var isFound = false;
       var res = {};
@@ -26,3 +27,5 @@ exports.getPinCode = function(options) {
       return isFound ? res : {error: 'NotFound'};
     })
 }
+
+module.exports = geocodeToPincode;
