@@ -17,6 +17,9 @@ geocodeToPincode({lat: 28.591, lng: 77.319, key: 'you-google-maps-api-key'})
   .then(response => console.log(response.pincode)) // prints '201301'
   .catch(error => console.log(error)) // prints error object as is
 
+// supply key either in options or as an environment variable as shown below
+// GOOGLE_MAPS_API_KEY=your-actual-google-apis-key
+
 // if for some reason pincode doesn't exist for that location
 // then it prints 'NotFound' without error, this case will mostly
 // not be there if the location is valid, meaning, location has a

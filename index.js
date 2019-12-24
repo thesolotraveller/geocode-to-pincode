@@ -1,5 +1,17 @@
 var url = require("url");
-var axios = require("axios");
+var https = require("https");
+
+function httpPromise (requestUrl) {
+  return new Promise ((res, rej) => {
+    https
+      .get(requestUrl, (resp) => {
+        let data = '';
+        resp.on('data', (chunk) => { data += chunk; });
+        resp.on('end', () => res(data));
+      })
+      .on("error", (err) => rej("Error: " + err.message));
+  })
+}
 
 function geocodeToPincode (options) {
   var coordinates = `${options.lat},${options.lng}`;
@@ -10,10 +22,11 @@ function geocodeToPincode (options) {
   var path = "https://maps.googleapis.com/maps/api/geocode/json";
   var requestUrl = url.format({pathname: path, query: query});
  
-  return axios.get(requestUrl)
+  return httpPromise(requestUrl)
     .then((response) => {
-      if (response.data.error_message) throw new Error(response.data.error_message);
-      response = response.data.results[0].address_components;
+      response = JSON.parse(response);
+      if (response.error_message) throw new Error(response.error_message);
+      response = response.results[0].address_components;
       var isFound = false;
       var res = {};
       for (let i=0; i<response.length; i++) {

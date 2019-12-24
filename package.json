@@ -1,11 +1,32 @@
 {
   "name": "geocode-to-pincode",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Tiny library for obtaining pincode from geo coordinates",
   "main": "index.js",
   "author": "Mohit Gupta",
   "license": "ISC",
-  "dependencies": {
-    "axios": "^0.19.0"
-  }
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thesolotraveller/geocode-to-pincode"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
+  },
+  "scripts": {
+    "test": "jest --passWithNoTests"
+  },
+  "keywords": [
+    "pincode",
+    "geocode",
+    "google-maps",
+    "location",
+    "reverse-geocode",
+    "reverse",
+    "geocode",
+    "lat",
+    "long",
+    "lon",
+    "latitude",
+    "longitude"
+  ]
 }
